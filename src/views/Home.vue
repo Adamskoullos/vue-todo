@@ -1,6 +1,10 @@
 <template>
   <div class="home">
-    <h1>Home Page</h1>
+    <div v-if="tasks.length">
+      <div v-for="task in tasks" :key="task.id">
+        <h1>{{ task.title }}</h1>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -9,6 +13,17 @@
 
 export default {
   name: 'Home',
-  components: {}
+  components: {},
+  data(){
+    return{
+      tasks: []
+    }
+  },
+  mounted(){
+    fetch('http://localhost:3000/projects')
+      .then(res => res.json())
+      .then(data => this.tasks = data)
+      .catch(err => console.log(err.message))
+  }
 }
 </script>
