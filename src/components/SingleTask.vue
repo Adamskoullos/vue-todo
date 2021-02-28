@@ -2,6 +2,11 @@
     <div class="task">
         <div class="actions" @click="showDetails">
             <h2>{{ task.title }}</h2>
+            <div class="icons">
+                <span class="material-icons">edit</span>
+                <span class="material-icons">delete</span>
+                <span class="material-icons">done</span>
+            </div>
         </div>
         <div class="details" v-if="showTaskDetails">
             <p>{{ task.details }}</p>
@@ -19,7 +24,6 @@ export default {
     },
     methods:{
         showDetails(){
-            console.log('firing')
             this.showTaskDetails = !this.showTaskDetails
         }
     }
@@ -37,5 +41,19 @@ export default {
   }
   h2 {
     cursor: pointer;
+  }
+  .actions{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+  }
+  .material-icons {
+    font-size: 24px;
+    margin-left: 10px;
+    color: #bbb;
+    cursor: pointer;
+  }
+  .material-icons:hover {
+    color: #777;
   }
 </style>
