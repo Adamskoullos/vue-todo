@@ -1,11 +1,11 @@
 <template>
-    <div class="task">
-        <div class="actions" @click="showDetails">
-            <h2>{{ task.title }}</h2>
+    <div class="task" :class="{ complete: task.complete }">
+        <div class="actions" >
+            <h2 @click="showDetails">{{ task.title }}</h2>
             <div class="icons">
                 <span class="material-icons">edit</span>
-                <span class="material-icons">delete</span>
-                <span class="material-icons">done</span>
+                <span class="material-icons" @click="deleteTask">delete</span>
+                <span class="material-icons" @click="toggleComplete">done</span>
             </div>
         </div>
         <div class="details" v-if="showTaskDetails">
@@ -19,18 +19,34 @@ export default {
     props: ['task'],
     data(){
         return{
-            showTaskDetails: false
+            showTaskDetails: false,
+            uri: 'http://localhost:3000/tasks/' + this.task.id
         }
     },
     methods:{
         showDetails(){
             this.showTaskDetails = !this.showTaskDetails
+        },
+        deleteTask(){
+            fetch(this.uri, { method: 'delete' })
+                .then(() => this.$emit('delete', this.task.id))
+                .catch(err => console.log(err.message))
+        },
+        toggleComplete(){
+            fetch(this.uri, {
+                method: 'PATCH',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({complete: !this.task.complete})
+            }).then(() => {
+                this.$emit('complete', this.task.id)
+            }).catch(err => console.log(err.message))
         }
     }
 }
 </script>
 
 <style scoped>
+
 .task {
     margin: 20px auto;
     background: white;
@@ -56,4 +72,7 @@ export default {
   .material-icons:hover {
     color: #777;
   }
+  .complete{
+    border-left: 4px solid rgb(7, 177, 7); 
+}
 </style>
