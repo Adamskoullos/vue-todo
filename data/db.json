@@ -4,13 +4,13 @@
       "id": 1,
       "title": "UPDATE to the task ",
       "details": "This is the updated task deatials",
-      "complete": false
+      "complete": true
     },
     {
       "id": 2,
       "title": "Make marketing email",
       "details": "Lorem ipsum",
-      "complete": true
+      "complete": false
     },
     {
       "title": "Create wire frames for new project ",
