@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 import AddTask from '../views/AddTask.vue'
+import EditTask from '../views/EditTask.vue'
 
 
 const routes = [
@@ -13,6 +14,12 @@ const routes = [
     path: '/add',
     name: 'AddTask',
     component: AddTask
+  },
+  {
+    path: '/tasks/:id',
+    name: 'EditTask',
+    component: EditTask,
+    props: true
   }
 ]
 
