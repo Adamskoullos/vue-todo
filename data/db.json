@@ -2,8 +2,8 @@
   "tasks": [
     {
       "id": 1,
-      "title": "Create new homepage banner",
-      "details": "Lorem ipsum",
+      "title": "Create new homepage banner UPDATE",
+      "details": "This is the updated task deatials",
       "complete": false
     },
     {
