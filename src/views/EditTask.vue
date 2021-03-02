@@ -28,14 +28,13 @@ export default {
     },
     methods:{
         submitUpdate(){
-            let task = {
-                title: this.title,
-                details: this.details,
-            }
             fetch(this.uri, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(task) 
+                body: JSON.stringify({
+                    title: this.title,
+                    details: this.details
+                }) 
             }).then(() => {
                 this.$router.push('/')
             }).catch(err => console.log(err.message))
